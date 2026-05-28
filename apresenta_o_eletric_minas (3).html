@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plano de Conteúdo - Eletric Minas</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configuração de Cores e Animações do Tailwind Baseado na Logo -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            300: '#fca5a5',
+                            400: '#f87171',
+                            500: '#da251d', // Vermelho exato da logo
+                            600: '#b91c1c',
+                            700: '#991b1b',
+                        },
+                        dark: {
+                            900: '#111111', // Fundo escuro neutro da logo
+                            800: '#1c1c1c',
+                            700: '#2a2a2a',
+                        },
+                        alert: '#f59e0b'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
+                    },
+                    animation: {
+                        blob: "blob 7s infinite",
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            "0%": { transform: "translate(0px, 0px) scale(1)" },
+                            "33%": { transform: "translate(30px, -50px) scale(1.1)" },
+                            "66%": { transform: "translate(-20px, 20px) scale(0.9)" },
+                            "100%": { transform: "translate(0px, 0px) scale(1)" }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111111; /* dark-900 correspondente à logo */
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .font-heading {
+            font-family: 'Outfit', sans-serif;
+        }
+        
+        /* Animação de Scroll */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px) scale(0.95);
+            transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Glassmorphism Refinado */
+        .glass-card {
+            background: rgba(28, 28, 28, 0.6); /* dark-800 com opacidade */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Background Grid Pattern - Ajustado para o novo fundo */
+        .bg-grid {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+
+        /* Atrasos para os Blobs */
+        .animation-delay-2000 { animation-delay: 2s; }
+        .animation-delay-4000 { animation-delay: 4s; }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-500 selection:text-white pb-24 relative bg-grid">
+
+    <!-- Blobs Animados de Fundo (Luzes estilo "Forja/Energia") -->
+    <div class="fixed inset-0 w-full h-full pointer-events-none z-[-1] overflow-hidden">
+        <div class="absolute top-0 -left-4 w-96 h-96 bg-brand-600 rounded-full mix-blend-screen filter blur-[120px] opacity-20 animate-blob"></div>
+        <div class="absolute top-0 -right-4 w-96 h-96 bg-orange-600 rounded-full mix-blend-screen filter blur-[120px] opacity-10 animate-blob animation-delay-2000"></div>
+        <div class="absolute -bottom-8 left-20 w-96 h-96 bg-red-800 rounded-full mix-blend-screen filter blur-[120px] opacity-20 animate-blob animation-delay-4000"></div>
+    </div>
+
+    <!-- Nav -->
+    <nav class="fixed w-full z-50 glass-card border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Logo Tipográfica adaptada -->
+                <div class="flex items-center gap-3 group cursor-pointer">
+                    <div class="relative flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-brand-400 to-brand-600 shadow-[0_0_15px_rgba(218,37,29,0.4)] group-hover:shadow-[0_0_25px_rgba(218,37,29,0.7)] transition-all duration-300">
+                        <i data-lucide="zap" class="text-white w-6 h-6 animate-pulse-slow"></i>
+                    </div>
+                    <div class="flex flex-col justify-center">
+                        <span class="text-[0.65rem] font-bold text-gray-400 uppercase tracking-[0.2em] leading-none mb-0.5">Grupo</span>
+                        <span class="font-heading font-black text-2xl tracking-tight leading-none lowercase">eletric<span class="text-brand-500">minas</span></span>
+                    </div>
+                </div>
+
+                <div class="hidden sm:flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-gray-300 font-medium">
+                    <i data-lucide="calendar-days" class="w-4 h-4 text-brand-500"></i> Planejamento • Junho
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="pt-40 pb-24 px-4 text-center relative z-10">
+        <div class="max-w-4xl mx-auto">
+            
+            <h1 class="text-5xl md:text-7xl font-black font-heading tracking-tight mb-8 leading-[1.1]">
+                Conteúdos do Mês de Junho <br>
+                <span class="relative inline-block mt-2">
+                    <span class="absolute -inset-1 bg-gradient-to-r from-brand-500 to-orange-400 blur-lg opacity-30"></span>
+                    <span class="relative text-transparent bg-clip-text bg-gradient-to-r from-white via-red-100 to-brand-300">Eletric Minas</span>
+                </span>
+            </h1>
+            
+            <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed font-light">
+                10 conceitos de conteúdo desenvolvidos para gerar <strong class="text-white font-medium">urgência</strong>, construir <strong class="text-white font-medium">autoridade técnica</strong> e atrair contratos preventivos.
+            </p>
+        </div>
+    </header>
+
+    <!-- Conteúdos Grid -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="cards-container">
+            
+            <!-- CARD 1 -->
+            <div class="relative group fade-in-up">
+                <!-- Efeito Glow Hover -->
+                <div class="absolute -inset-0.5 bg-gradient-to-r from-alert to-orange-500 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                <!-- Conteúdo -->
+                <div class="relative glass-card rounded-2xl p-8 h-full flex flex-col transition-transform duration-300 group-hover:-translate-y-1">
+                    <div class="flex justify-between items-start mb-6">
+                        <span class="text-xs font-bold px-3 py-1.5 bg-alert/10 border border-alert/20 text-alert rounded-full uppercase tracking-wider flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 rounded-full bg-alert animate-pulse"></span> Urgência
+                        </span>
+                        <span class="text-gray-600 font-heading font-black text-2xl opacity-50">01</span>
+                    </div>
+                    <h3 class="text-2xl font-bold font-heading mb-6 group-hover:text-alert transition-colors">“1 hora parada = milhares perdidos”</h3>
+                    
+                    <div class="space-y-5 text-sm text-gray-300 flex-grow">
+                        <div class="bg-dark-900/50 rounded-xl p-4 border border-white/5">
+                            <div class="flex items-center gap-2 text-white font-semibold mb-2"><i data-lucide="video" class="w-4 h-4 text-brand-400"></i> Visual</div>
+                            <p class="leading-relaxed text-gray-400">Fábrica em operação; corte abrupto; silêncio; tela preta; close em painel elétrico; técnico analisando falha; retorno da operação.</p>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2 text-white font-semibold mb-2"><i data-lucide="mic" class="w-4 h-4 text-brand-400"></i> Texto / Narração</div>
+                            <p class="leading-relaxed text-gray-400 italic border-l-2 border-alert pl-4 ml-1">"Uma única falha elétrica pode parar toda uma operação. E cada minuto parado custa caro. Manutenção preventiva não é custo. É proteção operacional."</p>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-6 border-t border-white/10">
+                        <p class="text-gray-400 text-sm flex items-start gap-2"><i data-lucide="crosshair" class="w-5 h-5 text-brand-500 shrink-0"></i> <span><strong>Objetivo:</strong> Gerar percepção de urgência e valor estratégico.</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 2 -->
+            <div class="relative group fade-in-up">
+                <div class="absolute -inset-0.5 bg-gradient-to-r from-brand-500 to-orange-500 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                <div class="relative glass-card rounded-2xl p-8 h-full flex flex-col transition-transform duration-300 group-hover:-translate-y-1">
+                    <div class="flex justify-between items-start mb-6">
+                        <span class="text-xs font-bold px-3 py-1.5 bg-brand-500/10 border border-brand-500/20 text-brand-400 rounded-full uppercase tracking-wider flex items-center gap-2">
+                            <i data-lucide="award" class="w-3 h-3"></i> Premium
+                        </span>
+                        <span class="text-gray-600 font-heading font-black text-2xl opacity-50">02</span>
+                    </div>
+                    <h3 class="text-2xl font-bold font-heading mb-6 group-hover:text-brand-400 transition-colors">“O que ninguém vê na manutenção”</h3>
+                    
+                    <div class="space-y-5 text-sm text-gray-300 flex-grow">
+                        <div class="bg-dark-900/50 rounded-xl p-4 border border-white/5">
+                            <div class="flex items-center gap-2 text-white font-semibold mb-2"><i data-lucide="video" class="w-4 h-4 text-brand-400"></i> Mini Cinematic</div>
+                            <p class="leading-relaxed text-gray-400">Equipe chegando; EPIs; abertura de painel; instrumentos; medições; termografia; close técnico; relatório final.<br><span class="inline-block mt-2 text-xs font-medium bg-brand-500/20 text-brand-300 px-2 py-1 rounded">Som industrial + Câmera lenta</span></p>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-6 border-t border-white/10">
+                        <p class="text-gray-400 text-sm flex items-start gap-2"><i data-lucide="crosshair" class="w-5 h-5 text-brand-500 shrink-0"></i> <span><strong>Objetivo:</strong> Mostrar profissionalismo e elevar percepção de qualidade.</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 3 -->
+            <div class="relative group fade-in-up">
+                <div class="absolute -inset-0.5 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                <div class="relative glass-card rounded-2xl p-8 h-full flex flex-col transition-transform duration-300 group-hover:-translate-y-1">
+                    <div class="flex justify-between items-start mb-6">
+                        <span class="text-xs font-bold px-3 py-1.5 bg-purple-500/10 border border-purple-500/20 text-purple-400 rounded-full uppercase tracking-wider flex items-center gap-2">
+                            <i data-lucide="book-open" class="w-3 h-3"></i> Educativo
+                        </span>
+                        <span class="text-gray-600 font-heading font-black text-2xl opacity-50">03</span>
+                    </div>
+                    <h3 class="text-2xl font-bold font-heading mb-6 group-hover:text-purple-400 transition-colors">“Diagnóstico antes da falha”</h3>
+                    
+                    <div class="space-y-5 text-sm text-gray-300 flex-grow">
+                        <div class="bg-dark-900/50 rounded-xl p-4 border border-white/5">
+                            <div class="flex items-center gap-2 text-white font-semibold mb-2"><i data-lucide="video" class="w-4 h-4 text-brand-400"></i> Visual</div>
+                            <p class="leading-relaxed text-gray-400">Mostrar: termografia; aquecimento; leitura técnica; ponto crítico; solução.</p>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2 text-white font-semibold mb-2"><i data-lucide="type" class="w-4 h-4 text-brand-400"></i> Texto</div>
+                            <p class="leading-relaxed text-gray-400 italic border-l-2 border-purple-500 pl-4 ml-1">"Antes de uma máquina parar… os sinais aparecem. Temperatura irregular. Sobrecarga. Desgaste. A manutenção preditiva evita prejuízos invisíveis."</p>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-6 border-t border-white/10">
+                        <p class="text-gray-400 text-sm flex items-start gap-2"><i data-lucide="crosshair" class="w-5 h-5 text-brand-500 shrink-0"></i> <span><strong>Objetivo:</strong> Educar sem parecer aula chata.</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 4 -->
+            <div class="relative group fade-in-up">
+                <div class="absolute -inset-0.5 bg-gradient-to-r from-emerald-500 to-teal-400 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                <div class="relative glass-card rounded-2xl p-8 h-full flex flex-col transition-transform duration-300 group-hover:-translate-y-1">
+                    <div class="flex justify-between items-start mb-6">
+                        <span class="text-xs font-bold px-3 py-1.5 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-full uppercase tracking-wider flex items-center gap-2">
+                            <i data-lucide="trending-up" class="w-3 h-3"></i> Comercial
+                        </span>
+                        <span class="text-gray-600 font-heading font-black text-2xl opacity-50">04</span>
+                    </div>
+                    <h3 class="text-2xl font-bold font-heading mb-6 group-hover:text-emerald-400 transition-colors">“Retrofit: o erro que custa caro”</h3>
+                    
+                    <div class="space-y-5 text-sm text-gray-300 flex-grow">
+                        <div class="bg-dark-900/50 rounded-xl p-4 border border-white/5">
+                            <div class="flex items-center gap-2 text-white font-semibold mb-2"><i data-lucide="split-square-horizontal" class="w-4 h-4 text-brand-400"></i> Estrutura</div>
+                            <p class="leading-relaxed text-gray-400">Comparação visual lado a lado: equipamento antigo vs. equipamento atualizado e modernizado.</p>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2 text-white font-semibold mb-2"><i data-lucide="type" class="w-4 h-4 text-brand-400"></i> Texto</div>
+                            <p class="leading-relaxed text-gray-400 italic border-l-2 border-emerald-500 pl-4 ml-1">"Equipamentos obsoletos aumentam: risco; consumo; falhas; parada operacional. Atualizar é mais barato que parar."</p>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-6 border-t border-white/10">
+                        <p class="text-gray-400 text-sm flex items-start gap-2"><i data-lucide="crosshair" class="w-5 h-5 text-brand-500 shrink-0"></i> <span><strong>Objetivo:</strong> Vender retrofit de forma inteligente e lógica.</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 5 -->
+            <div class="relative group fade-in-up">
+                <div class="absolute -inset-0.5 bg-gradient-to-r from-neutral-400 to-gray-200 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                <div class="relative glass-card rounded-2xl p-8 h-full flex flex-col transition-transform duration-300 group-hover:-translate-y-1">
+                    <div class="flex justify-between items-start mb-6">
+                        <span class="text-xs font-bold px-3 py-1.5 bg-gray-500/10 border border-gray-500/20 text-gray-300 rounded-full uppercase tracking-wider flex items-center gap-2">
+                            <i data-lucide="cpu" class="w-3 h-3"></i> Imersão
+                        </span>
+                        <span class="text-gray-600 font-heading font-black text-2xl opacity-50">05</span>
+                    </div>
+                    <h3 class="text-2xl font-bold font-heading mb-6 group-hover:text-white transition-colors">“Por dentro de um painel elétrico”</h3>
+                    
+                    <div class="space-y-5 text-sm text-gray-300 flex-grow">
+                        <div class="bg-dark-900/50 rounded-xl p-4 border border-white/5">
+                            <div class="flex items-center gap-2 text-white font-semibold mb-2"><i data-lucide="video" class="w-4 h-4 text-brand-400"></i> Visual</div>
+                            <p class="leading-relaxed text-gray-400">Câmera entrando no painel macro; closes organizados; componentes; identificação.<br><span class="inline-block mt-2 text-xs font-medium bg-gray-500/20 text-gray-300 px-2 py-1 rounded">Estética Clean e Premium</span></p>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2 text-white font-semibold mb-2"><i data-lucide="mic" class="w-4 h-4 text-brand-400"></i> Narração</div>
+                            <p class="leading-relaxed text-gray-400 italic border-l-2 border-gray-400 pl-4 ml-1">"Precisão. Segurança. Confiabilidade. Cada detalhe impacta toda a operação."</p>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-6 border-t border-white/10">
+                        <p class="text-gray-400 text-sm flex items-start gap-2"><i data-lucide="crosshair" class="w-5 h-5 text-brand-500 shrink-0"></i> <span><strong>Objetivo:</strong> Valorizar a engenharia minuciosa da Eletric Minas.</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 6 -->
+            <div class="relative group fade-in-up">
+                <div class="absolute -inset-0.5 bg-gradient-to-r from-orange-500 to-amber-500 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                <div class="relative glass-card rounded-2xl p-8 h-full flex flex-col transition-transform duration-300 group-hover:-translate-y-1">
+                    <div class="flex justify-between items-start mb-6">
+                        <span class="text-xs font-bold px-3 py-1.5 bg-orange-500/10 border border-orange-500/20 text-orange-400 rounded-full uppercase tracking-wider flex items-center gap-2">
+                            <i data-lucide="clapperboard" class="w-3 h-3"></i> Storytelling
+                        </span>
+                        <span class="text-gray-600 font-heading font-black text-2xl opacity-50">06</span>
+                    </div>
+                    <h3 class="text-2xl font-bold font-heading mb-6 group-hover:text-orange-400 transition-colors">“O problema começa pequeno”</h3>
+                    
+                    <div class="space-y-5 text-sm text-gray-300 flex-grow">
+                        <div class="bg-dark-900/50 rounded-xl p-4 border border-white/5">
+                            <div class="flex items-center gap-2 text-white font-semibold mb-2"><i data-lucide="git-merge" class="w-4 h-4 text-brand-400"></i> Evolução</div>
+                            <p class="leading-relaxed text-gray-400">Sequência: Ruído leve <i data-lucide="arrow-right" class="inline w-3 h-3 mx-1"></i> Aquecimento <i data-lucide="arrow-right" class="inline w-3 h-3 mx-1"></i> Oscilação <i data-lucide="arrow-right" class="inline w-3 h-3 mx-1"></i> Falha total <i data-lucide="arrow-right" class="inline w-3 h-3 mx-1"></i> Parada.</p>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2 text-white font-semibold mb-2"><i data-lucide="type" class="w-4 h-4 text-brand-400"></i> Texto</div>
+                            <p class="leading-relaxed text-gray-400 italic border-l-2 border-orange-500 pl-4 ml-1">"Grandes prejuízos começam com pequenos sinais. E ignorar esses sinais custa caro."</p>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-6 border-t border-white/10">
+                        <p class="text-gray-400 text-sm flex items-start gap-2"><i data-lucide="crosshair" class="w-5 h-5 text-brand-500 shrink-0"></i> <span><strong>Objetivo:</strong> Conscientizar sobre os riscos da negligência.</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 7 -->
+            <div class="relative group fade-in-up">
+                <div class="absolute -inset-0.5 bg-gradient-to-r from-indigo-500 to-blue-500 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                <div class="relative glass-card rounded-2xl p-8 h-full flex flex-col transition-transform duration-300 group-hover:-translate-y-1">
+                    <div class="flex justify-between items-start mb-6">
+                        <span class="text-xs font-bold px-3 py-1.5 bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 rounded-full uppercase tracking-wider flex items-center gap-2">
+                            <i data-lucide="shield-check" class="w-3 h-3"></i> Posicionamento
+                        </span>
+                        <span class="text-gray-600 font-heading font-black text-2xl opacity-50">07</span>
+                    </div>
+                    <h3 class="text-2xl font-bold font-heading mb-6 group-hover:text-indigo-400 transition-colors">“Não é só manutenção. É continuidade.”</h3>
+                    
+                    <div class="space-y-5 text-sm text-gray-300 flex-grow">
+                        <div class="bg-dark-900/50 rounded-xl p-4 border border-white/5">
+                            <div class="flex items-center gap-2 text-white font-semibold mb-2"><i data-lucide="video" class="w-4 h-4 text-brand-400"></i> Visual</div>
+                            <p class="leading-relaxed text-gray-400">Imagens fortes e imponentes da indústria operando a todo vapor, com a equipe técnica vigiando/analisando em segundo plano.</p>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2 text-white font-semibold mb-2"><i data-lucide="type" class="w-4 h-4 text-brand-400"></i> Texto</div>
+                            <p class="leading-relaxed text-gray-400 italic border-l-2 border-indigo-500 pl-4 ml-1">"Enquanto sua operação produz… alguém precisa garantir que ela continue."</p>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-6 border-t border-white/10">
+                        <p class="text-gray-400 text-sm flex items-start gap-2"><i data-lucide="crosshair" class="w-5 h-5 text-brand-500 shrink-0"></i> <span><strong>Objetivo:</strong> Fixar a marca como guardiã da produção.</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 8 -->
+            <div class="relative group fade-in-up">
+                <div class="absolute -inset-0.5 bg-gradient-to-r from-teal-400 to-emerald-500 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                <div class="relative glass-card rounded-2xl p-8 h-full flex flex-col transition-transform duration-300 group-hover:-translate-y-1">
+                    <div class="flex justify-between items-start mb-6">
+                        <span class="text-xs font-bold px-3 py-1.5 bg-teal-500/10 border border-teal-500/20 text-teal-400 rounded-full uppercase tracking-wider flex items-center gap-2">
+                            <i data-lucide="bookmark" class="w-3 h-3"></i> Salvável
+                        </span>
+                        <span class="text-gray-600 font-heading font-black text-2xl opacity-50">08</span>
+                    </div>
+                    <h3 class="text-2xl font-bold font-heading mb-6 group-hover:text-teal-400 transition-colors">“Checklist elétrico industrial”</h3>
+                    
+                    <div class="space-y-5 text-sm text-gray-300 flex-grow">
+                        <div class="bg-dark-900/50 rounded-xl p-4 border border-white/5">
+                            <div class="flex items-center gap-2 text-white font-semibold mb-2"><i data-lucide="list-checks" class="w-4 h-4 text-brand-400"></i> Estrutura do Post</div>
+                            <p class="leading-relaxed text-gray-400">Técnico em campo apontando os 5 itens de atenção rápida: Aquecimento, integridade de cabos, disjuntores, ruídos atípicos e sinais visuais de desgaste.</p>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-6 border-t border-white/10">
+                        <p class="text-gray-400 text-sm flex items-start gap-2"><i data-lucide="crosshair" class="w-5 h-5 text-brand-500 shrink-0"></i> <span><strong>Objetivo:</strong> Conteúdo utilitário para gerar saves e compartilhamentos.</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 9 -->
+            <div class="relative group fade-in-up">
+                <div class="absolute -inset-0.5 bg-gradient-to-r from-brand-600 to-red-600 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                <div class="relative glass-card rounded-2xl p-8 h-full flex flex-col transition-transform duration-300 group-hover:-translate-y-1">
+                    <div class="flex justify-between items-start mb-6">
+                        <span class="text-xs font-bold px-3 py-1.5 bg-brand-500/10 border border-brand-500/20 text-brand-400 rounded-full uppercase tracking-wider flex items-center gap-2">
+                            <i data-lucide="alert-triangle" class="w-3 h-3"></i> Comercial Direto
+                        </span>
+                        <span class="text-gray-600 font-heading font-black text-2xl opacity-50">09</span>
+                    </div>
+                    <h3 class="text-2xl font-bold font-heading mb-6 group-hover:text-brand-400 transition-colors">“O custo invisível da manutenção corretiva”</h3>
+                    
+                    <div class="space-y-5 text-sm text-gray-300 flex-grow">
+                        <div class="bg-dark-900/50 rounded-xl p-4 border border-white/5">
+                            <div class="flex items-center gap-2 text-white font-semibold mb-2"><i data-lucide="video" class="w-4 h-4 text-brand-400"></i> Visual Caótico</div>
+                            <p class="leading-relaxed text-gray-400">Mostrar cenário de pânico: luzes de emergência, operação travada, correria no rádio, técnicos atuando sob extrema pressão de tempo.</p>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2 text-white font-semibold mb-2"><i data-lucide="type" class="w-4 h-4 text-brand-400"></i> Texto</div>
+                            <p class="leading-relaxed text-gray-400 italic border-l-2 border-brand-500 pl-4 ml-1">"Manutenção corretiva custa mais: financeiramente; operacionalmente; estrategicamente."</p>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-6 border-t border-white/10">
+                        <p class="text-gray-400 text-sm flex items-start gap-2"><i data-lucide="crosshair" class="w-5 h-5 text-brand-500 shrink-0"></i> <span><strong>Objetivo:</strong> Conversão pura. Levar clientes a assinarem contratos preventivos.</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 10 -->
+            <div class="relative group fade-in-up">
+                <div class="absolute -inset-0.5 bg-gradient-to-r from-gray-400 to-white rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                <div class="relative glass-card rounded-2xl p-8 h-full flex flex-col transition-transform duration-300 group-hover:-translate-y-1">
+                    <div class="flex justify-between items-start mb-6">
+                        <span class="text-xs font-bold px-3 py-1.5 bg-white/10 border border-white/20 text-white rounded-full uppercase tracking-wider flex items-center gap-2">
+                            <i data-lucide="building-2" class="w-3 h-3"></i> Institucional
+                        </span>
+                        <span class="text-gray-600 font-heading font-black text-2xl opacity-50">10</span>
+                    </div>
+                    <h3 class="text-2xl font-bold font-heading mb-6 group-hover:text-white transition-colors">“A engenharia por trás da operação”</h3>
+                    
+                    <div class="space-y-5 text-sm text-gray-300 flex-grow">
+                        <div class="bg-dark-900/50 rounded-xl p-4 border border-white/5">
+                            <div class="flex items-center gap-2 text-white font-semibold mb-2"><i data-lucide="video" class="w-4 h-4 text-brand-400"></i> Visual Épico</div>
+                            <p class="leading-relaxed text-gray-400">Imagens aéreas dinâmicas (drones FPV); maquinário pesado; extensas fileiras de painéis de controle; equipe uniformizada caminhando junta.</p>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2 text-white font-semibold mb-2"><i data-lucide="mic" class="w-4 h-4 text-brand-400"></i> Narração Hero</div>
+                            <p class="leading-relaxed text-gray-400 italic border-l-2 border-white pl-4 ml-1">"A performance da indústria começa na confiabilidade elétrica."</p>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-6 border-t border-white/10">
+                        <p class="text-gray-400 text-sm flex items-start gap-2"><i data-lucide="crosshair" class="w-5 h-5 text-brand-500 shrink-0"></i> <span><strong>Objetivo:</strong> Endosso de marca. Mostrar estrutura e capacidade técnica avançada.</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DIVISOR LINKEDIN -->
+            <div class="col-span-1 md:col-span-2 lg:col-span-3 mt-16 mb-6 text-center fade-in-up">
+                <div class="inline-flex items-center justify-center p-3 mb-4 rounded-2xl bg-[#0a66c2]/20 border border-[#0a66c2]/30 shadow-[0_0_15px_rgba(10,102,194,0.4)]">
+                    <i data-lucide="linkedin" class="w-8 h-8 text-[#0a66c2]"></i>
+                </div>
+                <h2 class="text-3xl md:text-5xl font-black font-heading tracking-tight mb-4">
+                    Posicionamento Corporativo no <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#0a66c2] to-blue-400">LinkedIn</span>
+                </h2>
+                <p class="text-lg text-gray-400 max-w-2xl mx-auto font-light">
+                    Conteúdos desenhados para atrair parceiros B2B, tomadores de decisão da indústria e fortalecer a autoridade técnica da marca.
+                </p>
+            </div>
+
+            <!-- CARD 11 (LINKEDIN 1) -->
+            <div class="relative group fade-in-up">
+                <div class="absolute -inset-0.5 bg-gradient-to-r from-[#0a66c2] to-blue-500 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                <div class="relative glass-card rounded-2xl p-8 h-full flex flex-col transition-transform duration-300 group-hover:-translate-y-1">
+                    <div class="flex justify-between items-start mb-6">
+                        <span class="text-xs font-bold px-3 py-1.5 bg-blue-600/10 border border-blue-600/20 text-blue-400 rounded-full uppercase tracking-wider flex items-center gap-2">
+                            <i data-lucide="file-text" class="w-3 h-3"></i> Artigo / Vídeo
+                        </span>
+                        <span class="text-gray-600 font-heading font-black text-2xl opacity-50">11</span>
+                    </div>
+                    <h3 class="text-2xl font-bold font-heading mb-6 group-hover:text-blue-400 transition-colors">“O verdadeiro custo de uma parada industrial”</h3>
+                    
+                    <div class="space-y-5 text-sm text-gray-300 flex-grow">
+                        <div class="bg-dark-900/50 rounded-xl p-4 border border-white/5">
+                            <div class="flex items-center gap-2 text-white font-semibold mb-2"><i data-lucide="video" class="w-4 h-4 text-brand-400"></i> Sugestão Visual</div>
+                            <p class="leading-relaxed text-gray-400">Vídeo cinematográfico da operação; máquinas funcionando; painel elétrico; equipe técnica; transição para manutenção em campo; estética premium industrial.</p>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2 text-white font-semibold mb-2"><i data-lucide="align-left" class="w-4 h-4 text-brand-400"></i> Copy (Texto)</div>
+                            <div class="leading-relaxed text-gray-400 italic border-l-2 border-blue-500 pl-4 ml-1 space-y-3">
+                                <p>"Nem sempre o maior prejuízo da indústria está no equipamento que falhou. Muitas vezes, o maior impacto está no que a parada interrompe: <strong>produtividade, prazos, logística, operação e faturamento.</strong>"</p>
+                                <p>"Uma falha elétrica não programada pode comprometer toda a cadeia operacional de uma empresa. Por isso, a manutenção preventiva e preditiva deixou de ser apenas uma questão técnica. Hoje, ela faz parte da estratégia operacional das indústrias que buscam eficiência, segurança e continuidade."</p>
+                                <p>"Na Eletric Minas, acreditamos que antecipar problemas é tão importante quanto solucioná-los. A confiabilidade elétrica da operação influencia diretamente a performance da indústria."</p>
+                            </div>
+                        </div>
+                        <div class="pt-2">
+                            <p class="text-xs text-blue-400/70 font-mono tracking-tight leading-relaxed">#ManutençãoIndustrial #EngenhariaElétrica #Indústria #EficiênciaOperacional #ManutençãoPreventiva #EletricMinas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 12 (LINKEDIN 2) -->
+            <div class="relative group fade-in-up">
+                <div class="absolute -inset-0.5 bg-gradient-to-r from-sky-500 to-[#0a66c2] rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                <div class="relative glass-card rounded-2xl p-8 h-full flex flex-col transition-transform duration-300 group-hover:-translate-y-1">
+                    <div class="flex justify-between items-start mb-6">
+                        <span class="text-xs font-bold px-3 py-1.5 bg-sky-500/10 border border-sky-500/20 text-sky-400 rounded-full uppercase tracking-wider flex items-center gap-2">
+                            <i data-lucide="layout-template" class="w-3 h-3"></i> Carrossel B2B
+                        </span>
+                        <span class="text-gray-600 font-heading font-black text-2xl opacity-50">12</span>
+                    </div>
+                    <h3 class="text-2xl font-bold font-heading mb-6 group-hover:text-sky-400 transition-colors">“Engenharia elétrica vai além da manutenção”</h3>
+                    
+                    <div class="space-y-5 text-sm text-gray-300 flex-grow">
+                        <div class="bg-dark-900/50 rounded-xl p-4 border border-white/5">
+                            <div class="flex items-center gap-2 text-white font-semibold mb-2"><i data-lucide="layers" class="w-4 h-4 text-brand-400"></i> Sugestão Visual</div>
+                            <p class="leading-relaxed text-gray-400">Carrossel corporativo: Capa “Engenharia elétrica vai além da manutenção”; riscos invisíveis; impacto operacional; prevenção; continuidade; e fechamento institucional da marca.</p>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2 text-white font-semibold mb-2"><i data-lucide="align-left" class="w-4 h-4 text-brand-400"></i> Copy (Texto)</div>
+                            <div class="leading-relaxed text-gray-400 italic border-l-2 border-sky-500 pl-4 ml-1 space-y-3">
+                                <p>"Quando falamos em manutenção elétrica industrial, muitas pessoas pensam apenas em “consertar problemas”."</p>
+                                <p>"Mas, na prática, engenharia elétrica industrial significa: <strong>prevenir falhas, reduzir riscos, aumentar a confiabilidade operacional, otimizar processos e prolongar a vida útil dos equipamentos.</strong>"</p>
+                                <p>"Uma operação eficiente depende de decisões técnicas estratégicas. Retrofit, inspeções, análise preditiva, termografia e monitoramento são investimentos que impactam diretamente a produtividade da indústria. Empresas que tratam manutenção como estratégia operam com mais estabilidade, segurança e competitividade. É isso que buscamos entregar diariamente na Eletric Minas."</p>
+                            </div>
+                        </div>
+                        <div class="pt-2">
+                            <p class="text-xs text-sky-400/70 font-mono tracking-tight leading-relaxed">#Engenharia #ManutençãoIndustrial #IndústriaBrasileira #Eficiência #SegurançaIndustrial #EletricMinas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Seção de Referências (Benchmarking) -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-32 relative z-10">
+        <div class="relative group">
+            <div class="absolute -inset-1 bg-gradient-to-r from-brand-600 to-orange-500 rounded-[2rem] blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+            <div class="relative bg-dark-800/80 backdrop-blur-xl rounded-[2rem] p-10 md:p-14 border border-white/10 text-center overflow-hidden">
+                
+                <!-- Decoração interna -->
+                <div class="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-brand-500/10 rounded-full blur-3xl"></div>
+                
+                <h2 class="text-3xl md:text-4xl font-black font-heading mb-4 text-white">Referências & Benchmarking</h2>
+                <p class="text-gray-400 mb-10 max-w-2xl mx-auto text-lg">Direcionamento visual e narrativa de gigantes do setor para basear a estética premium da Eletric Minas.</p>
+                
+                <div class="flex flex-wrap justify-center gap-6">
+                    <a href="https://www.instagram.com/siemensbrasil" target="_blank" class="group/btn relative flex items-center gap-3 bg-dark-900 border border-white/10 hover:border-brand-400 px-8 py-4 rounded-full transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(218,37,29,0.2)]">
+                        <i data-lucide="instagram" class="w-5 h-5 text-gray-400 group-hover/btn:text-brand-400 transition-colors"></i>
+                        <span class="font-bold text-gray-200 group-hover/btn:text-white transition-colors tracking-wide">Siemens</span>
+                    </a>
+                    <a href="https://www.instagram.com/weg.motores" target="_blank" class="group/btn relative flex items-center gap-3 bg-dark-900 border border-white/10 hover:border-blue-500 px-8 py-4 rounded-full transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(59,130,246,0.2)]">
+                        <i data-lucide="instagram" class="w-5 h-5 text-gray-400 group-hover/btn:text-blue-500 transition-colors"></i>
+                        <span class="font-bold text-gray-200 group-hover/btn:text-white transition-colors tracking-wide">WEG</span>
+                    </a>
+                    <a href="https://www.instagram.com/schneiderelectric_br" target="_blank" class="group/btn relative flex items-center gap-3 bg-dark-900 border border-white/10 hover:border-emerald-500 px-8 py-4 rounded-full transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(16,185,129,0.2)]">
+                        <i data-lucide="instagram" class="w-5 h-5 text-gray-400 group-hover/btn:text-emerald-500 transition-colors"></i>
+                        <span class="font-bold text-gray-200 group-hover/btn:text-white transition-colors tracking-wide">Schneider Electric</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Inicialização de Scripts -->
+    <script>
+        // Inicializa os ícones
+        lucide.createIcons();
+
+        // Animação de Entrada ao Rolar a Página (Intersection Observer)
+        document.addEventListener("DOMContentLoaded", () => {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in-up').forEach((el, index) => {
+                el.style.transitionDelay = `${(index % 3) * 100}ms`;
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
